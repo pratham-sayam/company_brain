@@ -1,0 +1,25 @@
+{
+  "name": "orvyn",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "electron .",
+    "prebuild": "cd ../python-backend && venv\\Scripts\\pyinstaller orvyn.spec --distpath dist --clean",
+    "build": "electron-builder --config electron-builder.config.js",
+    "build:dir": "electron-builder --config electron-builder.config.js --dir"
+  },
+  "keywords": [],
+  "author": "Orvyn",
+  "license": "ISC",
+  "description": "Intelligent document management for Windows",
+  "dependencies": {
+    "dotenv": "^17.3.1",
+    "electron-log": "^5.4.3"
+  },
+  "devDependencies": {
+    "electron": "^40.6.0",
+    "electron-builder": "^26.8.1",
+    "electronmon": "^2.0.4"
+  }
+}

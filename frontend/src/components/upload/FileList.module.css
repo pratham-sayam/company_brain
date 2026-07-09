@@ -1,0 +1,464 @@
+/* ── File List Panel ────────────────────────────────────── */
+
+/* ── Search bar ────────────────────────────────────────── */
+
+.searchBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+  padding: var(--space-sm, 8px) var(--space-md, 16px);
+  border-bottom: 1px solid var(--border-light);
+  flex-shrink: 0;
+}
+
+.searchInputWrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  background: var(--input-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.searchInputWrap:focus-within {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.searchIcon {
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+  display: flex;
+}
+
+.searchInput {
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 0.8125rem;
+  color: var(--text-primary);
+  min-width: 0;
+}
+
+.searchInput::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* ── View toggles ──────────────────────────────────────── */
+
+.viewToggles {
+  display: flex;
+  gap: 2px;
+  background: var(--bg-hover);
+  border-radius: 6px;
+  padding: 2px;
+  flex-shrink: 0;
+}
+
+.viewToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 28px;
+  border: none;
+  border-radius: 5px;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  padding: 0;
+}
+
+.viewToggle:hover {
+  color: var(--text-primary);
+}
+
+.viewToggleActive {
+  background: var(--bg-surface);
+  color: var(--accent-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Toolbar ───────────────────────────────────────────── */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-sm, 8px) var(--space-md, 16px);
+  border-bottom: 1px solid var(--border-light);
+  flex-shrink: 0;
+}
+
+.toolbarStats {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+.toolbarActions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbarBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px 10px;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px solid var(--border-light);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+}
+
+.toolbarBtn:hover {
+  background: var(--bg-hover);
+  border-color: var(--border-medium);
+}
+
+.toolbarBtn:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 1px;
+}
+
+/* ── Dropdown menus ───────────────────────────────────── */
+
+.dropdownWrap {
+  position: relative;
+}
+
+.toolbarBtnActive {
+  background: var(--accent-soft);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  right: 0;
+  min-width: 160px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  padding: 4px;
+  z-index: 20;
+}
+
+.dropdownItem {
+  display: block;
+  width: 100%;
+  text-align: left;
+  padding: 7px 12px;
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.dropdownItem:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.dropdownItem:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: -1px;
+}
+
+.dropdownItemActive {
+  background: var(--accent-soft);
+  color: var(--accent-primary);
+  font-weight: 600;
+}
+
+/* ── Scrollable file list ──────────────────────────────── */
+
+.list {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+}
+
+/* ── File item row ─────────────────────────────────────── */
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+  padding: var(--space-sm, 8px) var(--space-md, 16px);
+  font-size: 0.8125rem;
+  font-family: 'Fira Sans', sans-serif;
+  color: var(--text-primary);
+  transition: background-color 0.15s ease;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.item:hover {
+  background-color: var(--bg-hover);
+}
+
+.itemInvalid {
+  opacity: 0.65;
+}
+
+/* ── File type icon badge ──────────────────────────────── */
+
+.itemIcon {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+/* Theme-aware file type colors via CSS variables */
+.iconPdf { background-color: var(--icon-bg-pdf); color: var(--icon-fg-pdf); }
+.iconDocx { background-color: var(--icon-bg-docx); color: var(--icon-fg-docx); }
+.iconXlsx { background-color: var(--icon-bg-xlsx); color: var(--icon-fg-xlsx); }
+.iconPptx { background-color: var(--icon-bg-pptx); color: var(--icon-fg-pptx); }
+.iconImage { background-color: var(--icon-bg-image); color: var(--icon-fg-image); }
+.iconDefault { background-color: var(--icon-bg-default); color: var(--icon-fg-default); }
+
+.itemName {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  font-weight: 500;
+}
+
+.itemSize {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+.itemBadge {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 0.625rem;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background-color: rgba(239, 68, 68, 0.08);
+  color: var(--danger-color);
+  flex-shrink: 0;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.itemRemove {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.itemRemove:hover {
+  background-color: var(--bg-active);
+  color: var(--danger-color);
+}
+
+.itemRemove:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 1px;
+}
+
+/* ── Empty state ───────────────────────────────────────── */
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  padding: var(--space-2xl, 48px) var(--space-lg, 24px);
+  gap: 8px;
+}
+
+.emptyIcon {
+  color: var(--text-tertiary);
+  opacity: 0.35;
+}
+
+.emptyTitle {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.emptyHint {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 0.75rem;
+  color: var(--text-tertiary);
+}
+
+/* ── Grid view ────────────────────────────────────────── */
+
+.grid {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: var(--space-sm, 8px);
+  padding: var(--space-md, 16px);
+  align-content: start;
+}
+
+.gridItem {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 16px 10px 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  background: var(--bg-surface);
+  transition: background-color 0.15s ease, border-color 0.15s ease;
+  cursor: default;
+}
+
+.gridItem:hover {
+  background-color: var(--bg-hover);
+  border-color: var(--border-medium);
+}
+
+.gridItemRemove {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 0;
+  opacity: 0;
+  transition: opacity 0.15s ease, background-color 0.15s ease, color 0.15s ease;
+}
+
+.gridItem:hover .gridItemRemove {
+  opacity: 1;
+}
+
+.gridItemRemove:hover {
+  background-color: var(--bg-active);
+  color: var(--danger-color);
+}
+
+.gridItemRemove:focus-visible {
+  opacity: 1;
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 1px;
+}
+
+.gridItemIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.gridItemName {
+  font-family: 'Fira Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.3;
+  max-height: 2.6em;
+}
+
+.gridItemSize {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+}
+
+/* ── Reduced motion ────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .item,
+  .itemRemove,
+  .viewToggle,
+  .toolbarBtn,
+  .searchInputWrap,
+  .gridItem,
+  .gridItemRemove {
+    transition: none;
+  }
+}

@@ -1,0 +1,922 @@
+/* ── File Explorer Layout ────────────────────────────────── */
+
+.explorer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  background-color: var(--bg-base);
+}
+
+/* ── Drag-and-drop overlay ─────────────────────────────── */
+
+.dropOverlay {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background-color: var(--accent-softer);
+  border: 2px dashed var(--accent-primary);
+  border-radius: 10px;
+  color: var(--accent-primary);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  pointer-events: none;
+}
+
+/* ── Navigation Bar ─────────────────────────────────────── */
+
+.navBar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-light);
+  flex-shrink: 0;
+  background-color: var(--bg-surface);
+}
+
+.navBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+
+.navBtn:hover:not(:disabled) {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.navBtn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.navSep {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border-light);
+  margin: 0 4px;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.crumb {
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  white-space: nowrap;
+  max-width: 160px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: all 0.15s ease;
+}
+
+.crumb:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+  text-decoration: underline;
+}
+
+.crumbActive {
+  color: var(--text-primary);
+  font-weight: 500;
+  cursor: default;
+}
+
+.crumbActive:hover {
+  background: transparent;
+  text-decoration: none;
+}
+
+.crumbSep {
+  font-size: 13px;
+  color: var(--text-tertiary);
+  flex-shrink: 0;
+}
+
+/* ── Toolbar ────────────────────────────────────────────── */
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 16px;
+  background-color: var(--bg-surface);
+  box-shadow: var(--shadow-sm);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+  height: 44px;
+}
+
+.toolbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.toolbarRight {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.toolBtn {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  height: 30px;
+  padding: 0 10px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  white-space: nowrap;
+}
+
+.toolBtn:hover {
+  background-color: var(--bg-hover);
+  /* color: var(--text-primary); */
+}
+
+.toolBtnPrimary {
+  color: #ffffff;
+  background-color: var(--accent-primary);
+  font-weight: 500;
+  box-shadow: var(--shadow-sm);
+}
+
+.toolBtnPrimary:hover {
+  background-color: var(--accent-hover);
+}
+
+/* ── Toolbar search ─────────────────────────────────────── */
+
+.toolSearch {
+  width: 200px;
+  height: 30px;
+  padding: 0 10px 0 30px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background-color: var(--bg-hover);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  transition: all 0.2s ease-in-out;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='13' viewBox='0 0 24 24' fill='none' stroke='%239095AE' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 9px center;
+}
+
+.toolSearch:focus {
+  background-color: var(--bg-surface);
+  border-color: var(--border-focus);
+  width: 280px;
+}
+
+.toolSearch::placeholder {
+  color: var(--text-tertiary);
+}
+
+/* ── View mode toggle ───────────────────────────────────── */
+
+.viewToggle {
+  display: flex;
+  background-color: var(--bg-hover);
+  border-radius: 6px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.viewToggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 24px;
+  border: none;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.viewToggleBtn:hover {
+  color: var(--text-primary);
+}
+
+.viewToggleBtnActive {
+  background-color: var(--bg-surface);
+  color: var(--accent-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* ── Toolbar separator ─────────────────────────────────── */
+
+.toolbarSep {
+  width: 1px;
+  height: 20px;
+  background-color: var(--border-light);
+  margin: 0 2px;
+  flex-shrink: 0;
+}
+
+/* ── Copilot toggle ────────────────────────────────────── */
+
+.copilotToggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+}
+
+.copilotToggle:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.copilotToggleActive {
+  background-color: var(--accent-soft);
+  color: var(--accent-primary);
+}
+
+
+/* ── Explorer content row (file content + copilot side by side) ── */
+
+.explorerContentRow {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.explorerMain {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* ── DataRoom card icon color ─────────────────────────── */
+
+.iconBgDataroom {
+  background-color: var(--accent-soft);
+  color: var(--accent-primary);
+}
+
+/* ── DataRoom card meta ───────────────────────────────── */
+
+.gridCardMeta {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-top: 2px;
+}
+
+/* ── Dropdown menus ─────────────────────────────────────── */
+
+.dropdownWrap {
+  position: relative;
+}
+
+.dropdown {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  z-index: 60;
+  min-width: 160px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: background-color 0.15s ease;
+}
+
+.dropdownItem:hover {
+  background-color: var(--bg-hover);
+}
+
+.dropdownDanger {
+  color: var(--danger-color);
+}
+
+.dropdownDanger:hover {
+  background-color: rgba(239, 68, 68, 0.08);
+}
+
+.dropdownSep {
+  height: 1px;
+  background-color: var(--border-light);
+  margin: 4px 8px;
+}
+
+/* ── Main content area ──────────────────────────────────── */
+
+.content {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Grid view ──────────────────────────────────────────── */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.gridCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 10px 12px;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  cursor: pointer;
+  box-shadow: var(--shadow-card);
+  transition: all 0.2s ease;
+  position: relative;
+}
+
+.gridCard:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.gridCardSelected {
+  background-color: rgba(108, 92, 231, 0.08);
+  border-color: rgba(108, 92, 231, 0.25);
+}
+
+.gridCardIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.gridCardName {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  text-align: center;
+  word-break: break-word;
+  line-height: 1.3;
+  max-height: 2.6em;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.gridCardMeta {
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+/* ── Confidence dot ─────────────────────────────────────── */
+
+.confidenceDot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px var(--bg-surface);
+}
+
+/* ── List view ──────────────────────────────────────────── */
+
+.listTable {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.listHeader {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+}
+
+.listHeader th {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+  text-align: left;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border-light);
+  background-color: var(--bg-surface);
+  cursor: pointer;
+  user-select: none;
+  transition: color 0.15s ease;
+  white-space: nowrap;
+}
+
+.listHeader th:hover {
+  color: var(--text-primary);
+}
+
+.sortIndicator {
+  margin-left: 4px;
+  font-size: 0.625rem;
+  opacity: 0.6;
+}
+
+.listRow {
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.listRow:nth-child(even) {
+  background-color: var(--accent-softer);
+}
+
+.listRow:hover {
+  background-color: var(--bg-hover);
+}
+
+.listRowSelected {
+  background-color: rgba(108, 92, 231, 0.08);
+}
+
+.listRow td {
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  height: 40px;
+}
+
+.listRow td:first-child {
+  max-width: 300px;
+}
+
+.listNameCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.listIcon {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.listFileName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+  max-width: 250px;
+}
+
+.listMuted {
+  color: var(--text-tertiary);
+  font-size: 12px;
+}
+
+/* ── Empty state ────────────────────────────────────────── */
+
+.emptyState {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 60px 24px;
+  text-align: center;
+}
+
+.emptyStateCentered {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  text-align: center;
+  flex: 1;
+  min-height: 0;
+}
+
+.emptyIcon {
+  opacity: 0.3;
+  color: var(--text-tertiary);
+}
+
+.emptyTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.emptyHint {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.emptyAction {
+  margin-top: 8px;
+  display: flex;
+  gap: 10px;
+}
+
+/* ── New Folder inline dialog ───────────────────────────── */
+
+.newFolderInline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-bottom: 1px solid var(--border-light);
+  background-color: var(--bg-surface);
+  flex-shrink: 0;
+}
+
+.newFolderInput {
+  flex: 1;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-focus);
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.newFolderBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.15s ease;
+}
+
+.newFolderBtnConfirm {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+}
+
+.newFolderBtnConfirm:hover {
+  background-color: var(--accent-hover);
+}
+
+.newFolderBtnCancel {
+  background: transparent;
+  color: var(--text-tertiary);
+}
+
+.newFolderBtnCancel:hover {
+  background-color: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* ── Loading overlay ────────────────────────────────────── */
+
+.loadingOverlay {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 0;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 3px solid var(--border-light);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* ── Stale content badge ────────────────────────────────── */
+
+.staleBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--warning-color);
+  background-color: var(--warning-bg);
+  border-radius: 4px;
+  margin-left: 6px;
+  flex-shrink: 0;
+}
+
+.reindexBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 1px 6px;
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--accent-primary);
+  background-color: var(--accent-soft);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 4px;
+  flex-shrink: 0;
+  transition: background-color 200ms ease;
+}
+
+.reindexBtn:hover {
+  background-color: var(--accent-primary);
+  color: #ffffff;
+}
+
+
+/* ── File type icon backgrounds ─────────────────────────── */
+
+.iconBgFolder   { background-color: var(--accent-soft); color: var(--accent-primary); }
+.iconBgPdf      { background-color: var(--icon-bg-pdf); color: var(--icon-fg-pdf); }
+.iconBgDocx     { background-color: var(--icon-bg-docx); color: var(--icon-fg-docx); }
+.iconBgXlsx     { background-color: var(--icon-bg-xlsx); color: var(--icon-fg-xlsx); }
+.iconBgPptx     { background-color: var(--icon-bg-pptx); color: var(--icon-fg-pptx); }
+.iconBgImage    { background-color: var(--icon-bg-image); color: var(--icon-fg-image); }
+.iconBgDefault  { background-color: var(--icon-bg-default); color: var(--icon-fg-default); }
+
+/* ── Rename inline ──────────────────────────────────────── */
+
+.renameInput {
+  width: 100%;
+  padding: 2px 6px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-focus);
+  border-radius: 4px;
+  outline: none;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* ── Confirmation dialogs ──────────────────────────────── */
+
+.confirmBackdrop {
+  position: fixed;
+  inset: 0;
+  background-color: var(--bg-overlay);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 120;
+}
+
+.confirmModal {
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  width: min(420px, calc(100vw - 48px));
+  padding: 24px;
+  box-shadow: var(--shadow-lg);
+}
+
+.confirmTitle {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  margin: 0 0 12px;
+}
+
+.confirmText {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.confirmInput {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  margin-top: 8px;
+  transition: border-color 0.15s ease;
+}
+
+.confirmInput:focus {
+  border-color: var(--border-focus);
+}
+
+.confirmTextarea {
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 56px;
+  max-height: 140px;
+  font-family: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.confirmTextarea:focus {
+  border-color: var(--border-focus);
+}
+
+.confirmActions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.confirmBtnSecondary {
+  padding: 7px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--btn-secondary-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.confirmBtnSecondary:hover {
+  background-color: var(--btn-secondary-hover);
+}
+
+.confirmBtnDanger {
+  padding: 7px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: var(--danger-color);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.confirmBtnDanger:hover:not(:disabled) {
+  background-color: var(--danger-hover);
+}
+
+.confirmBtnDanger:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.confirmBtnPrimary {
+  padding: 7px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: var(--accent-primary);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.confirmBtnPrimary:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+}
+
+.confirmBtnPrimary:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.dialogField {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 12px;
+}
+
+.dialogLabel {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ── Marked for move indicator ──────────────────────────── */
+
+.markedIcon {
+  opacity: 0.6;
+}
+
+.scissorsIndicator {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  font-size: 12px;
+  line-height: 1;
+  color: var(--text-tertiary);
+  pointer-events: none;
+}
+
+.listMarkedIndicator {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  margin-left: 6px;
+  flex-shrink: 0;
+}

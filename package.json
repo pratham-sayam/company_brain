@@ -1,0 +1,17 @@
+{
+  "name": "orvyn",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "frontend": "concurrently -k -n REACT,ELECTRON, -c blue,green \"npm run dev --prefix frontend\" \"npm run start --prefix electron\"",
+    "dev": "concurrently -k -n REACT,ELECTRON,EXPRESS -c blue,green,yellow \"npm run dev --prefix frontend\" \"npm run start --prefix electron\" \"npm run dev --prefix express-backend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "concurrently": "^9.2.1"
+  }
+}

@@ -1,0 +1,313 @@
+/* ── FolderTreeNode ─────────────────────────────────────── */
+
+.node {
+  position: relative;
+}
+
+.nodeRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 8px;
+  border-radius: 6px;
+  cursor: default;
+  transition: background-color 0.15s ease;
+}
+
+.nodeRow:hover {
+  background-color: var(--bg-hover);
+}
+
+.folderIcon {
+  flex-shrink: 0;
+  color: #eab308;
+}
+
+.nodeInfo {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.nodeName {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nodeContext {
+  font-size: 11px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Action buttons on each node ──────────────────────────── */
+
+.actions {
+  display: flex;
+  gap: 2px;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.nodeRow:hover .actions {
+  opacity: 1;
+}
+
+.actionBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border: none;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.15s ease;
+}
+
+.actionBtn:hover {
+  background-color: var(--bg-active);
+  color: var(--text-primary);
+}
+
+.actionBtnDanger:hover {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--danger-color);
+}
+
+/* ── Children container with tree line ────────────────────── */
+
+.children {
+  position: relative;
+  margin-left: 16px;
+  padding-left: 12px;
+  border-left: 1px solid var(--border-light);
+}
+
+/* ── Inline form (add / edit) ─────────────────────────────── */
+
+.inlineForm {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 8px;
+  margin: 4px 0 4px 16px;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+}
+
+.inlineInput {
+  width: 100%;
+  padding: 7px 10px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease;
+}
+
+.inlineInput:focus {
+  border-color: var(--border-focus);
+}
+
+.inlineTextarea {
+  width: 100%;
+  padding: 7px 10px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background-color: var(--bg-surface);
+  border: 1px solid var(--input-border);
+  border-radius: 6px;
+  outline: none;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 48px;
+  max-height: 100px;
+  font-family: inherit;
+  transition: border-color 0.15s ease;
+}
+
+.inlineTextarea:focus {
+  border-color: var(--border-focus);
+}
+
+.inlineActions {
+  display: flex;
+  gap: 6px;
+  justify-content: flex-end;
+}
+
+.inlineConfirm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: none;
+  border-radius: 6px;
+  background-color: var(--accent-primary);
+  color: #ffffff;
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.15s ease;
+}
+
+.inlineConfirm:hover {
+  background-color: var(--accent-hover);
+}
+
+.inlineConfirm:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.inlineCancel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border: 1px solid var(--btn-secondary-border);
+  border-radius: 6px;
+  background: transparent;
+  color: var(--text-tertiary);
+  cursor: pointer;
+  padding: 0;
+  transition: background-color 0.15s ease;
+}
+
+.inlineCancel:hover {
+  background-color: var(--btn-secondary-hover);
+}
+
+.inlineLabel {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+}
+
+.inlineError {
+  font-size: 12px;
+  color: var(--danger-color);
+  margin: 0;
+}
+
+/* ── Add root folder button ───────────────────────────────── */
+
+.addRootBtn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: transparent;
+  border: 1px dashed var(--border-medium);
+  border-radius: 8px;
+  cursor: pointer;
+  width: 100%;
+  transition: all 0.15s ease;
+}
+
+.addRootBtn:hover {
+  background-color: var(--accent-soft);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+/* ── Read-only mode (preview) ─────────────────────────────── */
+
+.readOnly .actions {
+  display: none;
+}
+
+.readOnly .nodeRow:hover {
+  background-color: transparent;
+}
+
+/* ── Delete confirmation ──────────────────────────────────── */
+
+.deleteConfirm {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  margin: 2px 0 2px 16px;
+  background-color: rgba(239, 68, 68, 0.06);
+  border: 1px solid rgba(239, 68, 68, 0.15);
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--text-primary);
+}
+
+.deleteConfirm span {
+  flex: 1;
+}
+
+.deleteYes {
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #ffffff;
+  background-color: var(--danger-color);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.deleteYes:hover {
+  background-color: var(--danger-hover);
+}
+
+.deleteNo {
+  padding: 3px 10px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-primary);
+  background: transparent;
+  border: 1px solid var(--btn-secondary-border);
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+}
+
+.deleteNo:hover {
+  background-color: var(--btn-secondary-hover);
+}
+
+/* ── Empty tree state ─────────────────────────────────────── */
+
+.emptyTree {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 32px 16px;
+  color: var(--text-secondary);
+  font-size: 13px;
+  text-align: center;
+}
+
+.emptyTreeIcon {
+  color: var(--text-tertiary);
+  opacity: 0.4;
+}

@@ -1,0 +1,357 @@
+/* ── Organization Method Section ───────────────────────── */
+
+.section {
+  background: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  padding: var(--space-md, 16px) var(--space-md, 16px);
+  box-shadow: var(--shadow-card);
+}
+
+.sectionTitle {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 2px;
+}
+
+.sectionSubtitle {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+  margin-bottom: var(--space-sm, 8px);
+}
+
+/* ── Mode cards ────────────────────────────────────────── */
+
+.modeCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.modeCard {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  border: 1.5px solid var(--border-light);
+  border-radius: 10px;
+  background: var(--bg-surface);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  font-family: var(--font-sans);
+}
+
+.modeCard:hover {
+  border-color: var(--border-medium);
+  background: var(--bg-hover);
+}
+
+.modeCard:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+.modeCardActive {
+  border-color: var(--accent-primary);
+  background-color: var(--accent-softer);
+  box-shadow: 0 0 0 1px var(--accent-primary);
+}
+
+.modeIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--accent-primary);
+  background: var(--accent-soft);
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.modeCardActive .modeIcon {
+  background: var(--accent-primary);
+  color: #fff;
+}
+
+.modeContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.modeTitle {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.modeDesc {
+  font-size: 0.625rem;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+}
+
+/* ── Config area ───────────────────────────────────────── */
+
+.configArea {
+  border-top: 1px solid var(--border-light);
+  padding-top: 14px;
+}
+
+.configHeader {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm, 8px);
+  margin-bottom: 10px;
+}
+
+.configIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--accent-soft);
+  color: var(--accent-primary);
+}
+
+.configTitle {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ── Form fields ───────────────────────────────────────── */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 10px;
+}
+
+.field:last-child {
+  margin-bottom: 0;
+}
+
+.label {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.labelHint {
+  font-weight: 400;
+  color: var(--text-tertiary);
+  text-transform: none;
+  letter-spacing: 0;
+  margin-left: 4px;
+}
+
+.fieldHint {
+  font-family: var(--font-sans);
+  font-size: 0.625rem;
+  color: var(--text-tertiary);
+  line-height: 1.4;
+  margin-top: 1px;
+}
+
+.select {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 0.8125rem;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  cursor: pointer;
+}
+
+.select:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.select option {
+  background-color: var(--bg-surface);
+  color: var(--text-primary);
+  padding: 8px 10px;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+}
+
+.select option:checked {
+  background-color: var(--accent-soft);
+  color: var(--accent-primary);
+}
+
+.select option:hover {
+  background-color: var(--bg-hover);
+}
+
+.input {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 0.8125rem;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.input::placeholder,
+.textarea::placeholder,
+.select::placeholder {
+  color: var(--text-tertiary);
+}
+
+.textarea {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 0.8125rem;
+  font-family: var(--font-sans);
+  color: var(--text-primary);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 8px;
+  outline: none;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 48px;
+  max-height: 100px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.textarea:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ── Preview tree ──────────────────────────────────────── */
+
+.previewSection {
+  margin-top: 12px;
+  border: 1px solid var(--border-light);
+  border-radius: 10px;
+  background: var(--input-bg);
+  overflow: hidden;
+}
+
+.previewHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.previewHeader svg {
+  color: var(--accent-primary);
+  opacity: 0.7;
+  width: 12px;
+  height: 12px;
+}
+
+.previewTree {
+  padding: 10px 12px;
+}
+
+.treeRoot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--text-primary);
+}
+
+.treeRoot svg {
+  color: var(--accent-primary);
+}
+
+.treeRootName {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.treeChild {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0 2px 28px;
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.treeChild svg {
+  color: var(--text-tertiary);
+  opacity: 0.8;
+}
+
+/* ── Bottom info hint ──────────────────────────────────── */
+
+.bottomHint {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0 0;
+  margin-top: 10px;
+  border-top: 1px solid var(--border-light);
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  color: var(--text-tertiary);
+}
+
+.bottomHint svg {
+  color: var(--accent-primary);
+  opacity: 0.6;
+  flex-shrink: 0;
+}
+
+/* ── Reduced motion ────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .modeCard,
+  .modeIcon,
+  .select,
+  .input,
+  .textarea {
+    transition: none;
+  }
+}

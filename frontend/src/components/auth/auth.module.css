@@ -1,0 +1,448 @@
+/* ── Split layout container ──────────────────────────────── */
+
+.authWrap {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+  background-color: var(--bg-app);
+}
+
+/* Left — brand panel */
+.brandPanel {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 36px;
+  width: 42%;
+  min-width: 240px;
+  padding: 52px 44px;
+  background: linear-gradient(150deg, #0C111D 0%, #0A1A12 55%, #064E3B 100%);
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle radial glow behind brand content */
+.brandPanel::before {
+  content: '';
+  position: absolute;
+  top: -60px;
+  right: -60px;
+  width: 280px;
+  height: 280px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.brandPanel::after {
+  content: '';
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+  width: 200px;
+  height: 200px;
+  background: radial-gradient(circle, rgba(16, 185, 129, 0.14) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.brandLogo {
+  font-size: 1.25rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #ffffff;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 1;
+}
+
+.brandTagline {
+  font-size: 1.625rem;
+  font-weight: 700;
+  line-height: 1.32;
+  color: #ffffff;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.brandFeatures {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  position: relative;
+  z-index: 1;
+}
+
+.brandFeature {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.4;
+}
+
+.brandFeatureIcon {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(255, 255, 255, 0.95);
+}
+
+/* Right — form panel */
+.formPanel {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+  padding: 40px 24px;
+  background-color: var(--bg-base);
+}
+
+/* Light mode: subtle white-to-green-tint gradient (Zeytra-style) */
+:global([data-theme="light"]) .formPanel {
+  background: linear-gradient(160deg, #FFFFFF 0%, #EAF5EE 100%);
+}
+
+/* ── Form content container (no card box) ─────────────── */
+
+.card {
+  width: 100%;
+  max-width: 420px;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0 0 28px;
+  letter-spacing: -0.02em;
+}
+
+/* ── Form fields ─────────────────────────────────────────── */
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  letter-spacing: 0.01em;
+}
+
+.input {
+  padding: 11px 14px;
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.input:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+/* ── Password field with show/hide toggle ────────────────── */
+
+.passwordWrap {
+  position: relative;
+}
+
+.passwordWrap .input {
+  padding-right: 40px;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  color: var(--text-tertiary);
+  display: flex;
+  align-items: center;
+  line-height: 1;
+  transition: color 0.15s ease;
+  border-radius: 4px;
+}
+
+.passwordToggle:hover {
+  color: var(--text-secondary);
+}
+
+/* ── Caps lock warning ───────────────────────────────────── */
+
+.capsWarning {
+  font-size: 0.75rem;
+  color: #d97706;
+  margin: 3px 0 0;
+}
+
+/* ── Password strength meter ─────────────────────────────── */
+
+.strengthMeter {
+  margin-top: 8px;
+}
+
+.strengthBars {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 5px;
+}
+
+.strengthBar {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background-color: var(--input-border);
+  transition: background-color 0.2s ease;
+}
+
+.strengthBar.active.s1 { background-color: #ef4444; }
+.strengthBar.active.s2 { background-color: #f97316; }
+.strengthBar.active.s3 { background-color: #eab308; }
+.strengthBar.active.s4 { background-color: #22c55e; }
+
+.strengthLabel {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.strengthLabel.s1 { color: #ef4444; }
+.strengthLabel.s2 { color: #f97316; }
+.strengthLabel.s3 { color: #eab308; }
+.strengthLabel.s4 { color: #22c55e; }
+
+/* ── Feedback ────────────────────────────────────────────── */
+
+.error {
+  font-size: 0.8125rem;
+  color: var(--danger-color);
+  margin: 0 0 12px;
+}
+
+.successBox {
+  font-size: 0.875rem;
+  color: var(--success-color);
+  background-color: var(--success-bg);
+  border: 1px solid var(--success-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* ── Primary button ──────────────────────────────────────── */
+
+.submit {
+  width: 100%;
+  padding: 13px 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: var(--accent-primary);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.15s ease, opacity 0.15s ease, box-shadow 0.15s ease;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  letter-spacing: 0.02em;
+}
+
+.submit:hover:not(:disabled) {
+  background-color: var(--accent-hover);
+  box-shadow: 0 4px 14px rgba(16, 185, 129, 0.35);
+}
+
+.submit:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+  flex-shrink: 0;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Footer ──────────────────────────────────────────────── */
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+
+.switchText {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+}
+
+.switchLink {
+  font-size: 0.875rem;
+  color: var(--accent-primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-color: rgba(59, 110, 245, 0.4);
+}
+
+.switchLink:hover {
+  color: var(--accent-hover);
+  text-decoration-color: var(--accent-hover);
+}
+
+/* ── Hints ───────────────────────────────────────────────── */
+
+.verifyHint {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  margin: 0 0 20px;
+  line-height: 1.5;
+}
+
+.disabledNote {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 12px;
+  line-height: 1.5;
+}
+
+/* ── 6-digit code inputs ─────────────────────────────────── */
+
+.codeInputWrap {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+.codeDigit {
+  width: 44px;
+  height: 52px;
+  text-align: center;
+  font-size: 1.375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  background-color: var(--input-bg);
+  border: 1px solid var(--input-border);
+  border-radius: 10px;
+  outline: none;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+  box-sizing: border-box;
+}
+
+.codeDigit:focus {
+  border-color: var(--border-focus);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.resendRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.cooldownText {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+}
+
+/* ── Status overlay (replaces form during OTP processing) ── */
+
+.statusOverlay {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 60px 0;
+  text-align: center;
+  animation: statusFadeIn 0.25s ease;
+}
+
+.statusSpinner {
+  width: 36px;
+  height: 36px;
+  border: 3px solid var(--border-light);
+  border-top-color: var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+.statusText {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+}
+
+.statusHint {
+  font-size: 0.8125rem;
+  color: var(--text-muted);
+  margin: 0;
+}
+
+.statusCheckmark {
+  width: 36px;
+  height: 36px;
+  color: var(--success-color);
+  animation: statusFadeIn 0.3s ease;
+}
+
+@keyframes statusFadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive: hide brand panel on narrow windows ─────── */
+
+@media (max-width: 600px) {
+  .brandPanel { display: none; }
+  .formPanel  { padding: 24px 16px; }
+}

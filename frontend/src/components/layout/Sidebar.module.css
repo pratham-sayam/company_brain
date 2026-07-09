@@ -1,0 +1,200 @@
+/* ── Sidebar shell ───────────────────────────────────────── */
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  flex-shrink: 0;
+  background-color: var(--chrome-bg);
+  transition: width 0.22s ease-in-out;
+  overflow: visible;
+  position: relative;
+}
+
+.sidebar.collapsed {
+  width: 56px;
+}
+
+/* ── Sidebar header — toggle lives here ─────────────────── */
+
+.sidebarHeader {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 52px;
+  padding: 8px 10px 0;
+  flex-shrink: 0;
+}
+
+.collapsed .sidebarHeader {
+  justify-content: center;
+  padding: 0;
+}
+
+/* ── Collapse toggle button (now at top) ─────────────────── */
+
+.toggleBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  color: var(--chrome-text);
+  cursor: pointer;
+  padding: 0;
+  outline: none;
+  flex-shrink: 0;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.toggleBtn:hover {
+  background-color: var(--chrome-hover-bg);
+  color: var(--chrome-text-hover);
+}
+
+.toggleBtn:focus-visible {
+  outline: 1px solid var(--chrome-focus-outline);
+  outline-offset: -2px;
+}
+
+/* ── Nav sections ────────────────────────────────────────── */
+
+.topNav,
+.bottomNav {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 0;
+}
+
+.spacer {
+  flex: 1;
+}
+
+/* ── Divider between sections ────────────────────────────── */
+
+.divider {
+  height: 1px;
+  background-color: var(--chrome-divider);
+  margin: 4px 12px;
+}
+
+/* ── Nav item ────────────────────────────────────────────── */
+
+.navItem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 36px;
+  padding: 0 12px;
+  margin: 1px 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--chrome-text);
+  white-space: nowrap;
+  transition: background-color 0.15s ease, color 0.15s ease;
+  user-select: none;
+}
+
+.navItem:hover {
+  background-color: var(--chrome-hover-bg);
+  color: var(--chrome-text-hover);
+}
+
+.navItem.active {
+  background-color: var(--chrome-active-bg);
+  color: var(--chrome-active-color);
+  font-weight: 500;
+}
+
+/* Active indicator — 3px accent bar on the left */
+.activeIndicator {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 16px;
+  border-radius: 0 2px 2px 0;
+  background-color: var(--chrome-active-color);
+}
+
+/* ── Icon ────────────────────────────────────────────────── */
+
+.navIcon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  opacity: 0.85;
+  transition: opacity 0.15s ease;
+}
+
+.navItem:hover .navIcon,
+.navItem.active .navIcon {
+  opacity: 1;
+}
+
+/* ── Label ───────────────────────────────────────────────── */
+
+.navLabel {
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: opacity 0.15s ease;
+  opacity: 1;
+}
+
+.collapsed .navLabel {
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ── Tooltip (collapsed only) ────────────────────────────── */
+
+.tooltip {
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--tooltip-bg);
+  color: var(--tooltip-text);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 10px;
+  border-radius: 6px;
+  white-space: nowrap;
+  pointer-events: none;
+  box-shadow: var(--tooltip-shadow);
+  border: 1px solid var(--tooltip-border);
+  z-index: 200;
+  /* Arrow pointing left */
+  letter-spacing: 0.01em;
+}
+
+/* Tooltip arrow */
+.tooltip::before {
+  content: '';
+  position: absolute;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: var(--tooltip-border);
+}
+
+.tooltip::after {
+  content: '';
+  position: absolute;
+  right: calc(100% - 1px);
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-right-color: var(--tooltip-bg);
+}

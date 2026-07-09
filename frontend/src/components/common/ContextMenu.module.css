@@ -1,0 +1,101 @@
+/* ── Context Menu ─────────────────────────────────────────── */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 199;
+}
+
+.menu {
+  position: fixed;
+  z-index: 200;
+  background-color: var(--bg-surface);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  box-shadow: var(--shadow-lg);
+  min-width: 180px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  animation: ctxAppear 0.1s ease-out;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  font-size: 13px;
+  color: var(--text-primary);
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: background-color 0.15s ease;
+  white-space: nowrap;
+}
+
+.item:hover {
+  background-color: var(--bg-hover);
+}
+
+.itemDanger {
+  color: var(--danger-color);
+}
+
+.itemDanger:hover {
+  background-color: rgba(239, 68, 68, 0.08);
+}
+
+.itemDisabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.itemDisabled:hover {
+  background-color: transparent;
+}
+
+.separator {
+  height: 1px;
+  background-color: var(--border-light);
+  margin: 4px 8px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--text-tertiary);
+  padding: 6px 12px 2px;
+  cursor: default;
+}
+
+.itemIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  flex-shrink: 0;
+  opacity: 0.7;
+}
+
+.shortcut {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--text-tertiary);
+}
+
+@keyframes ctxAppear {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

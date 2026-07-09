@@ -1,0 +1,302 @@
+/* ── Theme variables ─────────────────────────────────────── */
+
+[data-theme="light"] {
+  /* ── Font families ─────────────────────────────────────── */
+  --font-sans: 'Segoe UI Variable', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Cascadia Code', 'Consolas', ui-monospace, monospace;
+
+  /* ── Chrome (sidebar + header) — clean white/light ─────── */
+  --chrome-bg: #FAFCFB;
+  --chrome-text: rgba(45, 65, 55, 0.68);
+  --chrome-text-hover: #0F1C16;
+  --chrome-text-active: #0F1C16;
+  --chrome-label: rgba(90, 115, 100, 0.5);
+  --chrome-divider: rgba(0, 0, 0, 0.07);
+  --chrome-hover-bg: rgba(5, 150, 105, 0.06);
+  --chrome-active-bg: rgba(5, 150, 105, 0.1);
+  --chrome-active-color: #059669;
+  --chrome-focus-outline: rgba(5, 150, 105, 0.4);
+
+  /* ── Background layers ────────────────────────────────── */
+  --bg-base: #F2F8F5;
+  --bg-surface: #FFFFFF;
+  --bg-sidebar: #FAFCFB;
+  --bg-hover: #E6F0EB;
+  --bg-active: #CCE8D8;
+  --bg-overlay: rgba(0, 0, 0, 0.4);
+
+  /* Legacy aliases */
+  --bg-app: #F2F8F5;
+  --bg-header: #FAFCFB;
+
+  /* ── Text ─────────────────────────────────────────────── */
+  --text-primary: #0F1C16;
+  --text-secondary: #3D5A47;
+  --text-tertiary: #5F8570;
+  --text-inverse: #FFFFFF;
+  --text-muted: #526B5B;
+
+  /* ── Accent — Emerald Green ───────────────────────────── */
+  --accent-primary: #059669;
+  --accent-hover: #047857;
+  --accent-soft: rgba(5, 150, 105, 0.1);
+  --accent-softer: rgba(5, 150, 105, 0.05);
+
+  /* ── Borders ──────────────────────────────────────────── */
+  --border-light: #D8E8E0;
+  --border-medium: #B5D4C3;
+  --border-focus: #059669;
+  --border-color: #D8E8E0;
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --shadow-sm: 0 1px 3px rgba(0, 30, 15, 0.06);
+  --shadow-md: 0 2px 10px rgba(0, 30, 15, 0.08), 0 1px 3px rgba(0, 30, 15, 0.05);
+  --shadow-lg: 0 8px 28px rgba(0, 30, 15, 0.10), 0 2px 8px rgba(0, 30, 15, 0.06);
+  --shadow-card: 0 1px 4px rgba(0, 30, 15, 0.06), 0 0 0 1px rgba(0, 30, 15, 0.04);
+
+  /* ── Navigation states (content area) ────────────────── */
+  --nav-hover-bg: #E6F0EB;
+  --nav-hover-color: #0F1C16;
+  --nav-active-bg: rgba(5, 150, 105, 0.1);
+  --nav-active-color: #059669;
+
+  /* ── Tooltip — always dark for readability ────────────── */
+  --tooltip-bg: #0C1E14;
+  --tooltip-border: #164D28;
+  --tooltip-text: #E2E8F0;
+  --tooltip-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+
+  /* ── Toggle & controls ────────────────────────────────── */
+  --toggle-btn-color: #5F8570;
+  --toggle-btn-hover-bg: #E6F0EB;
+  --toggle-btn-hover-color: #0F1C16;
+  --toggle-btn-focus-outline: rgba(5, 150, 105, 0.4);
+  --control-btn-color: #3D5A47;
+  --control-btn-hover-bg: rgba(5, 150, 105, 0.06);
+
+  /* ── Status ───────────────────────────────────────────── */
+  --danger-color: #EF4444;
+  --danger-hover: #DC2626;
+  --success-color: #22C55E;
+  --success-bg: rgba(34, 197, 94, 0.08);
+  --success-border: rgba(34, 197, 94, 0.2);
+  --warning-color: #F59E0B;
+  --warning-bg: rgba(245, 158, 11, 0.08);
+  --warning-border: rgba(245, 158, 11, 0.25);
+  --info-color: #3B82F6;
+
+  /* ── Inputs & modals ──────────────────────────────────── */
+  --modal-bg: #FFFFFF;
+  --modal-backdrop: rgba(0, 0, 0, 0.4);
+  --input-bg: #FFFFFF;
+  --input-border: #D1D5DB;
+  --btn-secondary-border: #D1D5DB;
+  --btn-secondary-hover: #E6F0EB;
+
+  /* ── File type icon backgrounds ───────────────────────── */
+  --icon-bg-pdf: #FEE2E2;
+  --icon-fg-pdf: #DC2626;
+  --icon-bg-docx: #DBEAFE;
+  --icon-fg-docx: #2563EB;
+  --icon-bg-xlsx: #D1FAE5;
+  --icon-fg-xlsx: #16A34A;
+  --icon-bg-pptx: #FED7AA;
+  --icon-fg-pptx: #EA580C;
+  --icon-bg-image: #EDE9FE;
+  --icon-fg-image: #7C3AED;
+  --icon-bg-default: #F3F4F6;
+  --icon-fg-default: #6B7280;
+}
+
+[data-theme="dark"] {
+  /* ── Font families ─────────────────────────────────────── */
+  --font-sans: 'Segoe UI Variable', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Cascadia Code', 'Consolas', ui-monospace, monospace;
+
+  /* ── Chrome (sidebar + header) — neutral near-black ────── */
+  --chrome-bg: #111111;
+  --chrome-text: rgba(250, 250, 250, 0.6);
+  --chrome-text-hover: #FAFAFA;
+  --chrome-text-active: #FFFFFF;
+  --chrome-label: rgba(250, 250, 250, 0.3);
+  --chrome-divider: rgba(255, 255, 255, 0.07);
+  --chrome-hover-bg: rgba(255, 255, 255, 0.05);
+  --chrome-active-bg: rgba(16, 185, 129, 0.15);
+  --chrome-active-color: #34D399;
+  --chrome-focus-outline: rgba(16, 185, 129, 0.45);
+
+  /* ── Background layers — neutral dark ──────────────────── */
+  --bg-base: #0F0F0F;
+  --bg-surface: #1A1A1A;
+  --bg-sidebar: #111111;
+  --bg-hover: #252525;
+  --bg-active: #2E2E2E;
+  --bg-overlay: rgba(0, 0, 0, 0.65);
+
+  /* Legacy aliases */
+  --bg-app: #0F0F0F;
+  --bg-header: #111111;
+
+  /* ── Text — clean neutrals ─────────────────────────────── */
+  --text-primary: #FAFAFA;
+  --text-secondary: #A3A3A3;
+  --text-tertiary: #666666;
+  --text-inverse: #0F0F0F;
+  --text-muted: #888888;
+
+  /* ── Accent — Emerald Green ───────────────────────────── */
+  --accent-primary: #10B981;
+  --accent-hover: #34D399;
+  --accent-soft: rgba(16, 185, 129, 0.12);
+  --accent-softer: rgba(16, 185, 129, 0.06);
+
+  /* ── Borders — semi-transparent white ──────────────────── */
+  --border-light: rgba(255, 255, 255, 0.08);
+  --border-medium: rgba(255, 255, 255, 0.12);
+  --border-focus: #10B981;
+  --border-color: rgba(255, 255, 255, 0.08);
+
+  /* ── Shadows ──────────────────────────────────────────── */
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 2px 10px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.3);
+  --shadow-lg: 0 8px 28px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 1px 4px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.04);
+
+  /* ── Navigation states (content area) ────────────────── */
+  --nav-hover-bg: #252525;
+  --nav-hover-color: #FAFAFA;
+  --nav-active-bg: rgba(16, 185, 129, 0.14);
+  --nav-active-color: #10B981;
+
+  /* ── Tooltip ──────────────────────────────────────────── */
+  --tooltip-bg: #1A1A1A;
+  --tooltip-border: rgba(255, 255, 255, 0.12);
+  --tooltip-text: #FAFAFA;
+  --tooltip-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+
+  /* ── Toggle & controls ────────────────────────────────── */
+  --toggle-btn-color: #666666;
+  --toggle-btn-hover-bg: #252525;
+  --toggle-btn-hover-color: #FAFAFA;
+  --toggle-btn-focus-outline: rgba(16, 185, 129, 0.4);
+  --control-btn-color: #A3A3A3;
+  --control-btn-hover-bg: #252525;
+
+  /* ── Status ───────────────────────────────────────────── */
+  --danger-color: #EF4444;
+  --danger-hover: #DC2626;
+  --success-color: #22C55E;
+  --success-bg: rgba(34, 197, 94, 0.1);
+  --success-border: rgba(34, 197, 94, 0.2);
+  --warning-color: #FBBF24;
+  --warning-bg: rgba(251, 191, 36, 0.1);
+  --warning-border: rgba(251, 191, 36, 0.25);
+  --info-color: #60A5FA;
+
+  /* ── Inputs & modals ──────────────────────────────────── */
+  --modal-bg: #1A1A1A;
+  --modal-backdrop: rgba(0, 0, 0, 0.65);
+  --input-bg: rgba(255, 255, 255, 0.04);
+  --input-border: rgba(255, 255, 255, 0.12);
+  --btn-secondary-border: rgba(255, 255, 255, 0.12);
+  --btn-secondary-hover: #252525;
+
+  /* ── File type icon backgrounds — semi-transparent ────── */
+  --icon-bg-pdf: rgba(239, 68, 68, 0.12);
+  --icon-fg-pdf: #FCA5A5;
+  --icon-bg-docx: rgba(59, 130, 246, 0.12);
+  --icon-fg-docx: #93C5FD;
+  --icon-bg-xlsx: rgba(34, 197, 94, 0.12);
+  --icon-fg-xlsx: #86EFAC;
+  --icon-bg-pptx: rgba(234, 88, 12, 0.12);
+  --icon-fg-pptx: #FDBA74;
+  --icon-bg-image: rgba(124, 58, 237, 0.12);
+  --icon-fg-image: #C4B5FD;
+  --icon-bg-default: rgba(255, 255, 255, 0.06);
+  --icon-fg-default: #A3A3A3;
+}
+
+/* ── App shell ───────────────────────────────────────────── */
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--bg-app);
+}
+
+/* Horizontal body row — sidebar + main content side by side */
+.app-body {
+  display: flex;
+  flex-direction: row;
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  /* Dark chrome background bleeds through the rounded corner of app-content */
+  background-color: var(--bg-sidebar);
+}
+
+/* Scrollable main area — takes all remaining space beside the sidebar */
+.app-content {
+  flex: 1;
+  min-width: 0;
+  overflow: auto;
+  color: var(--text-primary);
+  background-color: var(--bg-base);
+  /* Creates the smooth curved intersection with the dark sidebar/header */
+  border-top-left-radius: 16px;
+  border-top: 1px solid var(--chrome-divider);
+  border-left: 1px solid var(--chrome-divider);
+}
+
+/* Offline banner */
+.offline-banner {
+  flex-shrink: 0;
+  padding: 0.375rem 1rem;
+  font-size: 0.8125rem;
+  text-align: center;
+  background-color: var(--warning-bg);
+  color: var(--text-primary);
+  border-bottom: 1px solid var(--warning-border);
+}
+
+/* ── App loading screen ──────────────────────────────────── */
+
+.app-loading {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0;
+}
+
+.app-loading-logo {
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  margin-bottom: 20px;
+}
+
+.app-loading-dots {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.app-loading-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background-color: var(--text-tertiary);
+  animation: loadingPulse 1.2s infinite ease-in-out both;
+}
+
+.app-loading-dot:nth-child(2) { animation-delay: 0.16s; }
+.app-loading-dot:nth-child(3) { animation-delay: 0.32s; }
+
+@keyframes loadingPulse {
+  0%, 80%, 100% { transform: scale(0.6); opacity: 0.3; }
+  40%           { transform: scale(1);   opacity: 1; }
+}

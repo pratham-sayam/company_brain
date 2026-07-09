@@ -1,0 +1,35 @@
+# Node
+node_modules/
+dist/
+build/
+dist-electron/
+
+# Logs
+*.log
+
+# Env files
+.env
+.env.local
+.env.development
+.env.production
+
+# Python
+venv/
+__pycache__/
+*.pyc
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Electron build
+release/
+out/
+# Third-party AI skills (installed via scripts/install-skills.sh)
+.agent/skills/
+.claude/skills/
+
+# Keep these tracked:
+# - design-system/ (project design decisions)
+# - .claude/context/ (project documentation)
+# - scripts/install-skills.sh (reproducible setup)

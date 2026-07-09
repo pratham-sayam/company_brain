@@ -1,0 +1,55 @@
+/* Global reset and base styles */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: 'Segoe UI Variable', 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 14px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background-color: #0F1117;
+  color: #E8EAF0;
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Thin custom scrollbar — subtle, auto-hide feel */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--border-medium, rgba(255, 255, 255, 0.12));
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--text-tertiary, rgba(255, 255, 255, 0.25));
+}
+
+/* Selection highlight */
+::selection {
+  background-color: var(--accent-soft, rgba(108, 92, 231, 0.2));
+  color: var(--text-primary, #E8EAF0);
+}
